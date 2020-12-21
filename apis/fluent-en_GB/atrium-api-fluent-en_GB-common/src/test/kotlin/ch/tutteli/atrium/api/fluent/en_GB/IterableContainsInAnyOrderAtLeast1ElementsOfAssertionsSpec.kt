@@ -1,6 +1,7 @@
 package ch.tutteli.atrium.api.fluent.en_GB
 
 import ch.tutteli.atrium.creating.Expect
+import ch.tutteli.atrium.specs.notImplemented
 import org.spekframework.spek2.Spek
 import kotlin.reflect.KFunction2
 
@@ -77,5 +78,21 @@ class IterableContainsInAnyOrderAtLeast1ElementsOfAssertionsSpec : Spek({
             a: Double?,
             aX: Array<out Double?>
         ): Expect<Iterable<Double?>> = expect.containsElementsOf(sequenceOf(a, *aX).asIterable())
+    }
+
+    @Suppress("unused", "UNUSED_VALUE")
+    private fun ambiguityTest() {
+        var list: Expect<List<Number>> = notImplemented()
+        var nullableList: Expect<Set<Number?>> = notImplemented()
+        var subList: Expect<ArrayList<out Number>> = notImplemented()
+        var star: Expect<Collection<*>> = notImplemented()
+        var any: Expect<Collection<Any>> = notImplemented()
+
+        list = list.contains.inAnyOrder.atLeast(1).elementsOf(listOf<Number>())
+        nullableList = nullableList.contains.inAnyOrder.atLeast(1).elementsOf(listOf<Number>())
+        subList = subList.contains.inAnyOrder.atLeast(1).elementsOf(listOf<Number>())
+        star = star.contains.inAnyOrder.atLeast(1).elementsOf(listOf<Number>())
+        any = any.contains.inAnyOrder.atLeast(1).elementsOf(listOf<Number>())
+
     }
 }
